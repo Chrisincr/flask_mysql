@@ -1,0 +1,3 @@
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")   ---- bad password
+pymysql.err.OperationalError: (1045, "Access denied for user 'roots'@'localhost' (using password: YES)")    ---- bad username
+
