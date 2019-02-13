@@ -28,7 +28,7 @@
                 <td>{{one_friend["first_name"]}} {{one_friend["last_name"]}}</td>
                 <td>{{one_friend["email"]}}</td>
                 <td>{{one_friend['created_at']}}</td>
-                <td><a href="/users/{{one_friend['id']}}">Show</a></td>
+                <td><a href="/users/{{one_friend['id']}}" class="btn btn-primary">Show</a> | <a href="/users/{{one_friend['id']}}/edit" class="btn btn-primary">Edit</a> | <a href="/users/{{one_friend['id']}}/delete" class="btn btn-danger">Delete</a></td>
             </tr>
         
         
@@ -37,6 +37,7 @@
     </table>
     
     </table>
+    <a href='/users/new' class="btn btn-primary">Add a New User</a>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

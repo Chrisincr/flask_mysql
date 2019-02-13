@@ -12,8 +12,14 @@
 <body>
     <form class="form-primary" action="/update" method="POST">
         <div class="form-group">
+                
+                <input type="hidden" class="form-control" name="id" id="id"  value="{{friend[0]['id']}}">
             <label for="fname">First Name</label>
             <input type="text" class="form-control" name="fname" id="fname"  value="{{friend[0]['first_name']}}">
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control" name="lname" id="lname"  value="{{friend[0]['last_name']}}">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" id="email"  value="{{friend[0]['email']}}">
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
