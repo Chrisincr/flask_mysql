@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>DOJO WALL</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='wall.css') }}">
+</head>
+<body>
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <a class="navbar-brand">DojoMessage Wall</a>
+            <span class="navbar-text">Welcome, {{session['fname']}} <a href="/logout" class="btn btn-danger .col-md-offset-5">Log Out</a></span>
+            
+        </nav>
+        <hr>
+        <div class="container bg-light">
+            <div class="row">
+                <div class ="col col-md">
+                    <span class='h2'>{{messages|length}}   Messages</span>
+                    <ul class="list-group">
+                        {% for message in messages %}
+                        <li class="list-group-item active border">
+                            <div class="container">
+                                <div class="row">
+                                    <div class ="col col-8">
+                                        <div class="row">
+                                            From {{message['first_name']}} {{message['last_name']}} at {{message['created_at']}}
+                                        </div>
+                                        <div class="row">
+                                            {{message['text']}}
+                                        </div>
+                                    </div>
+                                    <div class ="col col-4">
+                                        <form action="/deletemessage" method="POST">
+                                            <input type="hidden" class="form-control" name="messageid" id="messageid" value="{{message['messageid']}}">
+                                            
+                                            <div class='text-right'><button type="submit" class="btn btn-danger" >Delete</button></div>
+                                        </form>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        
+                    </ul>
+
+                </div>
+                <div class ="col col-md">
+                    <span class='h2'>Send Messages</span>
+                    <p>You have sent 90 messages so far.</p>
+                    <form action="/sendmessage" method="POST">
+                        <div class="form-group">
+                        <label for="target">Select User</label>
+                        <select class="form-control" name="target" id="target">
+                            {% for user in users %}
+                            <option value='{{user['id']}}'>{{user['first_name']}} {{user['last_name']}}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+                        </div>
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
